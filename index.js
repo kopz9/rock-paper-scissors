@@ -10,32 +10,38 @@ const computerSelection = () => {
 
 const playerSelection = () => {
   let userChoice = prompt("Rock, Paper or Scissor?");
-  return userChoice.toLowerCase();
+  return userChoice
 }
-
 
 const checkWinner = (playerSelection, computerSelection) => {
 
-  if(playerSelection == computerSelection){ return "Tie";}
-   
-  else if ((playerSelection == "rock" && computerSelection == "scissor") || 
-     (playerSelection == "scissor" && computerSelection == "paper") || 
-     (playerSelection == "paper" && computerSelection == "rock"))
-    { return "Player";}
-}
+  if(!playerSelection || !computerSelection){
+    return "Invalid choices"
+  }
 
+  const pS = playerSelection.toLowerCase();
+  const cS = computerSelection.toLowerCase();
 
-const playRound = (playerSelection, computerSelection) => {
-  const result = checkWinner(playerSelection, computerSelection);  
-  if(result == "Tie") return "Tie"
-}
+  if(pS === cS){
+    return "Tie"
+  } 
+  if (
+    (pS === "rock" && cS === "scissor") ||
+    (pS === "paper" && cS === "rock") ||
+    (pS === "scissor" && cS === "paper")
+  ) {
+    return "Player wins";
+  }
+  return "Computer wins";
+  }
+ 
+const playerChoice = playerSelection();
+const computerChoice = computerSelection();  
+const result = checkWinner(playerChoice, computerChoice);
 
-
-
-console.log("computer selection " + computerSelection());
-console.log("player selection " + playerSelection());
-
-console.log(checkWinner());
+console.log(`Player choice: ${playerChoice}`)
+console.log(`Computer choice: ${computerChoice}`);
+console.log(`Result: ${result}`)
 
 
 
